@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-class
+provisioner: x90.awknode.com/external-nfs
+parameters:
+  server: 10.13.37.254
+  path: /home/awk/down
+#  readOnly: false
