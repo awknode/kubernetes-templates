@@ -42,7 +42,7 @@ spec:
       containers:
       - env:
         - name: PLEX_CLAIM
-          value: claim-T3wyhwYKkPEXCcjx1zAo
+          value:
         - name: PGID
           value: "\x31\x30\x30"    # '100'
         - name: PUID
