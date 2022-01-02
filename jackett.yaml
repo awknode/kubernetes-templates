@@ -1,37 +1,39 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "22"
-  creationTimestamp: "2021-12-25T01:42:40Z"
-  generation: 22
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2022-01-02T20:27:50Z"
+  generation: 1
   labels:
-    app: plex
-  name: plex
+    app: jackett
+  name: jackett
   namespace: plexserver
-  resourceVersion: "524874"
-  uid: f9665145-bec7-4f00-a2b9-c4fb2ea1f7bd
+  resourceVersion: "986368"
+  uid: a1ed3ef4-7bb9-4abd-9b25-c757253e09b1
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: plex
+      app: jackett
   strategy:
     rollingUpdate:
       maxSurge: 25%
       maxUnavailable: 25%
     type: RollingUpdate
   template:
+  template:
     metadata:
-      annotations:
-        kubectl.kubernetes.io/restartedAt: "2021-12-24T19:26:46-07:00"
       creationTimestamp: null
       labels:
-        app: plex
+        app: jackett
     spec:
-      nodeName: k3s-master-01
       volumes:
       - name: pv-storage
         persistentVolumeClaim:
@@ -40,16 +42,9 @@ spec:
         persistentVolumeClaim:
           claimName: pv-claim-config
       containers:
-      - env:
-        - name: PLEX_CLAIM
-          value: claim-T3wyhwYKkPEXCcjx1zAo
-        - name: PGID
-          value: "\x31\x30\x30"    # '100'
-        - name: PUID
-          value: "\x31\x30\x33\x35" # '1035'
-        image: linuxserver/plex
+      - image: linuxserver/jackett
         imagePullPolicy: Always
-        name: plex
+        name: jackett
         volumeMounts:
           - mountPath: "/media"
             name: pv-storage
@@ -66,18 +61,19 @@ spec:
 status:
   availableReplicas: 1
   conditions:
-  - lastTransitionTime: "2021-12-25T01:43:19Z"
-    lastUpdateTime: "2021-12-25T01:43:19Z"
+  - lastTransitionTime: "2022-01-02T20:29:37Z"
+    lastUpdateTime: "2022-01-02T20:29:37Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
-  - lastTransitionTime: "2021-12-25T01:42:40Z"
-    lastUpdateTime: "2021-12-25T02:26:55Z"
-    message: ReplicaSet "plex-6c66c9f75b" has successfully progressed.
+  - lastTransitionTime: "2022-01-02T20:27:54Z"
+    lastUpdateTime: "2022-01-02T20:29:37Z"
+    message: ReplicaSet "jackett-6b9b7d8bdd" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
     type: Progressing
-  observedGeneration: 22
+  observedGeneration: 1
   readyReplicas: 1
   replicas: 1
+  updatedReplicas: 1

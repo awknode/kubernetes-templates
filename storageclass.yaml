@@ -6,4 +6,4 @@ provisioner: x90.awknode.com/external-nfs
 parameters:
   server: 10.13.37.254
   path: /home/awk/down
-#  readOnly: false
+  readOnly: false
